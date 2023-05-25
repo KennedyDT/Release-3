@@ -11,6 +11,72 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductosController extends Controller
 {
+    public function index()
+    {
+        $productos=Productos::all();
+        return $productos;
+    }
+
+    public function create()
+    {
+        //
+    }
+
+    public function store(Request $request)
+    {
+        $producto=new Productos();
+        $producto->Nombre=$request->Nombre;
+        $producto->Marca=$request->Marca;
+        $producto->Descripcion=$request->Descripcion;
+        $producto->Cantidad=$request->Cantidad;
+        $producto->Precio=$request->Precio;
+        $producto->save();
+        $productos=Productos::all();
+        return $productos;
+
+    }
+
+    public function show($id)
+    {
+        //
+    }
+
+
+    public function edit($id)
+    {
+        //
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+
+    public function destroy($id)
+    {
+        $producto=Productos::find($id);
+        $producto->delete();
+        $productos=Productos::all();
+        return $productos;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* prueba para la api
     public function __construct()
     {
 
@@ -18,11 +84,7 @@ class ProductosController extends Controller
         $this->middleware('can:admin.productos.edit')->only('edit', 'update');
         $this->middleware('can:admin.productos.destroy')->only('destroy');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         $busqueda=$request->busqueda;
@@ -37,20 +99,20 @@ class ProductosController extends Controller
          return view('productos.index',$datos);
     }
 
-    
+
 
     public function pdf()
     {
         $producto = Productos::paginate();
-        
+
         $datos['data_productos'] = $producto;
 
         $pdf = PDF::loadView('productos.pdf',$datos);
         //$pdf->loadHTML('productos.pdf');
-       
+
 
         return $pdf->download();
-        
+
 
         //  return view('productos.pdf',$datos);
     }
@@ -58,24 +120,14 @@ class ProductosController extends Controller
 
 
 
-    /**
-     *
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
         return view('productos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
@@ -86,23 +138,13 @@ class ProductosController extends Controller
         return redirect('productos')->with('mensaje', 'Producto registrado con exito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Productos  $productos
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Productos $productos)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Productos  $productos
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
@@ -111,13 +153,6 @@ class ProductosController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Productos  $productos
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request,$id)
     {
         //
@@ -128,28 +163,26 @@ class ProductosController extends Controller
         return view('productos.edit', compact('productos'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Productos  $productos
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
         Productos::destroy($id);
         return redirect('productos')->with('mensaje','Producto borrado');
     }
-public function grafica()
+    public function grafica()
     {
         $producto = Productos::paginate();
-        
+
         $datos['data_productos'] = $producto;
 
 
         return view('productos.grafica',$datos) ;
-    
-}
 
 
+    }
+    */
+
+
+
 }
+

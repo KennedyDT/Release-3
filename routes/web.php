@@ -28,7 +28,7 @@ Route::get('/usuarios', [UserController::class, 'index'])->name('users.index')->
 
 Route::resource('operators', OperatorsController::class)->names('admin.operators')->middleware('can:admin.operators');
 
-
+/* prueba api release 3
 // Ruta sin restricciones de permisos
 Route::get('/productos', [ProductosController::class, 'index'])->name('productos.index');
 
@@ -36,6 +36,10 @@ Route::get('/productos', [ProductosController::class, 'index'])->name('productos
 Route::middleware('can:admin.productos')->group(function () {
     Route::resource('productos', ProductosController::class)->except('index')->names('admin.productos');
 });
+Route::get('/pdf', [App\Http\Controllers\ProductosController::class, 'pdf'])->name('pdf');
+Route::get('/grafica', [App\Http\Controllers\ProductosController::class, 'grafica'])->name('grafica');
+
+*/
 
 
 //Route::resource('services', ServicesController::class)->names('admin.services')->middleware('can:admin.services');
@@ -84,9 +88,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-Route::get('/pdf', [App\Http\Controllers\ProductosController::class, 'pdf'])->name('pdf');
+
 
 Route::get('/pdf_servicios', [App\Http\Controllers\ServicesController::class, 'pdf'])->name('pdf_servicios');
 Route::get('/api', [App\Http\Controllers\UserController::class, 'api'])->name('api');
 
-Route::get('/grafica', [App\Http\Controllers\ProductosController::class, 'grafica'])->name('grafica');
